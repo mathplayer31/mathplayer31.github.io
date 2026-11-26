@@ -1,30 +1,37 @@
 ---
 // Vraies captures de l'app SvenskaCore (390x844 en densité 2) : un écran par étape du projet phare.
+// Étape 1 : séquence accueil > tap sur l'Unité 1 > carte de révision (CSS, relancée par .feature.inview).
 import type { Lang } from '../i18n';
 interface Props { lang: Lang; still?: boolean }
 const { lang, still = false } = Astro.props;
 const fr = lang === 'fr';
-const screens = [
-  { file: '1-etude', alt: fr ? "Carte de révision « hej då » avec IPA, audio et boutons de notation" : 'Review card "hej då" with IPA, audio and grading buttons' },
-  { file: '2-decks', alt: fr ? 'Onglet Fondations : decks par niveau A1 et A2' : 'Foundations tab: decks by level A1 and A2' },
-  { file: '3-classement', alt: fr ? 'Onglet Classement : série de 12 jours et classement de la semaine' : 'Leaderboard tab: 12-day streak and weekly ranking' },
-];
-const shown = still ? screens.slice(0, 1) : screens;
+const src = (file: string) => `/projets/svenskacore/${lang}-${file}.png`;
+// Zone cliquable de l'Unité 1 sur l'écran d'accueil, en px CSS sur 390x844 (le titre « Reprendre » est plus long en FR)
+const unit1 = fr ? { x: 22, y: 516, w: 346, h: 60 } : { x: 22, y: 460, w: 346, h: 60 };
+const tap = { left: `${((unit1.x + unit1.w / 2) / 390) * 100}%`, top: `${((unit1.y + unit1.h / 2) / 844) * 100}%` };
+const alts = {
+  home: fr ? "Accueil de l'app : le parcours et ses unités" : 'App home: the learning path and its units',
+  card: fr ? "Carte de révision « hej då » avec IPA, audio et boutons de notation" : 'Review card "hej då" with IPA, audio and grading buttons',
+  decks: fr ? 'Onglet Fondations : decks par niveau A1 et A2' : 'Foundations tab: decks by level A1 and A2',
+  rank: fr ? 'Onglet Classement : série de 12 jours et classement de la semaine' : 'Leaderboard tab: 12-day streak and weekly ranking',
+};
 ---
 <div class="phone-stage">
   <div class="phone">
     <div class="screen">
-      {shown.map((s, i) => (
-        <img
-          class:list={['scr', { on: i === 0 }]}
-          src={`/projets/svenskacore/${lang}-${s.file}.png`}
-          alt={s.alt}
-          width="390"
-          height="844"
-          loading={i === 0 ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-      ))}
+      {still ? (
+        <img class="scr on" src={src('1-etude')} alt={alts.card} width="390" height="844" decoding="async" />
+      ) : (
+        <>
+          <div class="scr seq on">
+            <img class="seq-home" src={src('0-accueil')} alt={alts.home} width="390" height="844" decoding="async" />
+            <img class="seq-card" src={src('1-etude')} alt={alts.card} width="390" height="844" decoding="async" />
+            <span class="tap" style={`left:${tap.left};top:${tap.top}`} aria-hidden="true"></span>
+          </div>
+          <img class="scr" src={src('2-decks')} alt={alts.decks} width="390" height="844" loading="lazy" decoding="async" />
+          <img class="scr" src={src('3-classement')} alt={alts.rank} width="390" height="844" loading="lazy" decoding="async" />
+        </>
+      )}
     </div>
   </div>
 </div>

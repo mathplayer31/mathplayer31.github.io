@@ -50,6 +50,8 @@ function onScroll() {
   if (feature && steps.length) {
     const fr = feature.getBoundingClientRect(), fp = clamp(-fr.top / (fr.height - vh));
     const idx = Math.min(steps.length - 1, Math.floor(fp * steps.length));
+    // inview relance la séquence accueil > tap > carte à chaque entrée dans la section
+    feature.classList.toggle('inview', fr.top < vh * 0.5 && fr.bottom > vh * 0.5);
     steps.forEach((s, i) => s.classList.toggle('on', i === idx));
     scrs.forEach((s, i) => s.classList.toggle('on', i === idx));
     bars.forEach((b, i) => b.style.setProperty('--f', String(clamp(fp * steps.length - i))));
