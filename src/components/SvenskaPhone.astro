@@ -1,0 +1,43 @@
+---
+// Maquette HTML de l'app SvenskaCore : un écran par étape du projet phare.
+import type { Lang } from '../i18n';
+interface Props { lang: Lang; still?: boolean }
+const { lang, still = false } = Astro.props;
+const fr = lang === 'fr';
+const decks = fr
+  ? [['Le corps', 'A2', 58, 90], ['La maison', 'A2', 64, 62], ['Voyages', 'A2', 55, 35], ['Économie et finance', 'B2', 60, 8]]
+  : [['The body', 'A2', 58, 90], ['The home', 'A2', 64, 62], ['Travel', 'A2', 55, 35], ['Economy and finance', 'B2', 60, 8]];
+---
+<div class="phone-stage" aria-hidden="true">
+  <div class="phone">
+    <span class="notch"></span>
+    <div class="screen">
+      <div class="scr on">
+        <div class="app-top"><span>{fr ? 'Unité 1 : Salutations' : 'Unit 1: Greetings'}</span><span>12 / 20</span></div>
+        <div class="flash"><span class="sv">hej</span><span class="ipa">/hɛjː/</span><span class="fr">{fr ? 'salut' : 'hi'}</span></div>
+        <div class="grade">
+          {(fr ? ['Encore', 'Dur', 'Bien', 'Facile'] : ['Again', 'Hard', 'Good', 'Easy']).map((g, i) => <span class={i === 2 ? 'g' : ''}>{g}</span>)}
+        </div>
+      </div>
+      {!still && (
+        <div class="scr">
+          <div class="app-top"><span>{fr ? 'Fondations' : 'Foundations'}</span><span>B2</span></div>
+          {decks.map(([name, lvl, n, pct]) => (
+            <div class="deck">
+              <div>{name}<small>{lvl} · {n} {fr ? 'mots' : 'words'}</small><div class="bar"><b style={`width:${pct}%`}></b></div></div>
+              <span class="mono">{pct} %</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {!still && (
+        <div class="scr">
+          <div class="streak"><strong>27</strong><div class="mono">{fr ? 'jours de suite' : 'day streak'}</div></div>
+          <div class="row"><span class="n">1</span><span class="av"></span>lina_sv<span class="xp">2 140</span></div>
+          <div class="row me"><span class="n">2</span><span class="av"></span>matheo<span class="xp">1 985</span></div>
+          <div class="row"><span class="n">3</span><span class="av"></span>oskar<span class="xp">1 410</span></div>
+        </div>
+      )}
+    </div>
+  </div>
+</div>

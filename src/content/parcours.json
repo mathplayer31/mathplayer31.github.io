@@ -1,0 +1,32 @@
+[
+  {
+    "id": "svenskacore",
+    "period": "2026",
+    "title": { "fr": "SvenskaCore et FranceCore", "en": "SvenskaCore and FranceCore" },
+    "text": {
+      "fr": "Conception et développement de deux applications d'apprentissage des langues, publiées sur le web et sur Android.",
+      "en": "Designed and built two language-learning apps, released on the web and on Android."
+    }
+  },
+  {
+    "id": "experience-1",
+    "draft": true,
+    "period": "20XX",
+    "title": { "fr": "Poste ou stage", "en": "Job or internship" },
+    "text": { "fr": "[à compléter : entreprise, missions, résultat]", "en": "[to fill in]" }
+  },
+  {
+    "id": "experience-2",
+    "draft": true,
+    "period": "20XX",
+    "title": { "fr": "Poste ou stage", "en": "Job or internship" },
+    "text": { "fr": "[à compléter]", "en": "[to fill in]" }
+  },
+  {
+    "id": "formation",
+    "draft": true,
+    "period": "20XX",
+    "title": { "fr": "Formation", "en": "Education" },
+    "text": { "fr": "[à compléter : diplôme, école]", "en": "[to fill in]" }
+  }
+]

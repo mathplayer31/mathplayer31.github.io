@@ -1,0 +1,135 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import SvenskaPhone from './SvenskaPhone.astro';
+import { site } from '../site';
+import { t, words, projectUrl, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t[lang];
+
+const projets = (await getCollection('projets', (p) => p.id.startsWith(`${lang}/`))).sort((a, b) => a.data.order - b.data.order);
+const slug = (id: string) => id.split('/')[1];
+const featured = projets.find((p) => p.data.featured);
+const others = projets.filter((p) => p !== featured);
+const parcours = (await getCollection('parcours')).filter((p) => import.meta.env.DEV || !p.data.draft);
+---
+<Layout lang={lang} alt={lang === 'fr' ? '/en/' : '/'}>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      {site.available && <span class="mono tag fade-up">{s.available}</span>}
+      <h1>
+        {words(s.hero).map((w, i) => (
+          <><span class="w"><span style={`transition-delay:${i * 70}ms`}>{w.hl ? <em>{w.w}</em> : w.w}</span></span>{' '}</>
+        ))}
+      </h1>
+      <p class="fade-up">{s.heroSub}</p>
+      <div class="actions fade-up">
+        <a class="btn btn-main" href="#projets">{s.ctaProjects} <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#contact">{s.ctaContact}</a>
+      </div>
+    </div>
+    <span class="scroll-hint" aria-hidden="true"></span>
+  </header>
+
+  <section id="apropos">
+    <div class="wrap">
+      <p class="mono" style="margin-bottom:2rem">{s.aboutLabel}</p>
+      <p class="about-text">{words(s.about).map((w) => <><span class:list={['wd', { hl: w.hl }]}>{w.w}</span>{' '}</>)}</p>
+      <div class="facts" data-reveal>
+        {s.facts.map((f) => (
+          <div>
+            {typeof f.value === 'number' ? <strong data-count={f.value}>{f.value.toLocaleString(lang)}</strong> : <strong>{f.value}</strong>}
+            <span class="mono">{f.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="feature" id="projets" style={`height:${(featured.data.steps?.length ?? 1) * 100 + 40}vh`}>
+      <div class="stick">
+        <div class="wrap">
+          <div class="grid">
+            <div>
+              <p class="mono">{s.featuredLabel}</p>
+              <div class="steps">
+                {(featured.data.steps ?? [{ title: featured.data.title, text: featured.data.summary, chips: featured.data.stack }]).map((st, i) => (
+                  <div class:list={['step', { on: i === 0 }]}>
+                    <h3>{st.title}</h3>
+                    <p>{st.text}</p>
+                    <div class="chips">{st.chips.map((c) => <span>{c}</span>)}</div>
+                  </div>
+                ))}
+              </div>
+              <div class="progress">
+                {(featured.data.steps ?? [0]).map(() => <i><b></b></i>)}
+                <a class="btn btn-ghost" href={projectUrl(lang, slug(featured.id))}>{s.seeProject} <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+            </div>
+            {featured.data.mockup === 'svenskacore' && <SvenskaPhone lang={lang} />}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {others.length > 0 && (
+    <section id={featured ? undefined : 'projets'}>
+      <div class="wrap">
+        <div class="sec-head"><h2 data-reveal>{s.others}</h2></div>
+        <div class="cards">
+          {others.map((p, i) => (
+            <a class="card" href={projectUrl(lang, slug(p.id))} data-reveal style={`transition-delay:${i * 0.1}s`}>
+              <span class="mono">{p.data.year} · {p.data.kind}</span>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.summary}</p>
+              <div class="chips">{p.data.stack.slice(0, 3).map((c) => <span>{c}</span>)}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div class="marquee" aria-label={s.stackLabel}>
+    <div class="track">
+      {[...site.stack, ...site.stack].map((x, i) => <span aria-hidden={i >= site.stack.length ? 'true' : undefined}>{x}</span>)}
+    </div>
+  </div>
+
+  <section id="parcours">
+    <div class="wrap">
+      <p class="mono" style="margin-bottom:2rem">{s.pathLabel}</p>
+      <div class="sec-head">
+        <h2 data-reveal>{s.pathTitle}</h2>
+        {site.cv && <a class="btn btn-ghost" href={site.cv} download>{s.cv} <span class="arr" aria-hidden="true">↓</span></a>}
+      </div>
+      <div class="timeline">
+        <span class="rail"><b></b></span>
+        {parcours.map((p) => (
+          <div class="item" data-reveal>
+            <span class="mono">{p.data.period}</span>
+            <h3>{p.data.title[lang]}</h3>
+            <p class:list={{ todo: p.data.draft }}>{p.data.text[lang]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="mono" style="margin-bottom:1.5rem">{s.contactLabel}</p>
+      <h2 data-reveal>{s.contactTitle}<br /><span style="color:var(--muted)">{s.contactSub}</span></h2>
+      {site.email && <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>}
+      {site.phone && <a class="mail" href={`tel:+33${site.phone.replace(/\s/g, '').slice(1)}`} style={site.email ? 'margin-left:2.5rem' : undefined}>{site.phone}</a>}
+      <div class="socials mono">
+        {site.github && <a href={site.github} rel="me">GitHub ↗</a>}
+        {site.linkedin && <a href={site.linkedin} rel="me">LinkedIn ↗</a>}
+      </div>
+    </div>
+  </section>
+</Layout>

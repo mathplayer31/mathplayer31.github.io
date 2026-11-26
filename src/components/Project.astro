@@ -1,0 +1,36 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import SvenskaPhone from './SvenskaPhone.astro';
+import { t, home, projectUrl, type Lang } from '../i18n';
+
+interface Props { lang: Lang; entry: CollectionEntry<'projets'> }
+const { lang, entry } = Astro.props;
+const s = t[lang];
+const { Content } = await render(entry);
+const slug = entry.id.split('/')[1];
+const p = entry.data;
+---
+<Layout lang={lang} title={p.title} description={p.summary} alt={projectUrl(lang === 'fr' ? 'en' : 'fr', slug)}>
+  <article class="project">
+    <div class="wrap">
+      <a class="back mono" href={`${home(lang)}#projets`}><span aria-hidden="true">←</span> {s.back}</a>
+      <div class="project-head">
+        <div>
+          <span class="mono tag">{p.year} · {p.kind}</span>
+          <h1 style="margin-top:1rem">{p.title}</h1>
+          <p class="lead">{p.summary}</p>
+          <div class="chips">{p.stack.map((c) => <span>{c}</span>)}</div>
+          {(p.link || p.repo) && (
+            <div class="actions">
+              {p.link && <a class="btn btn-main" href={p.link}>{s.openSite} <span class="arr" aria-hidden="true">↗</span></a>}
+              {p.repo && <a class="btn btn-ghost" href={p.repo}>{s.sourceCode}</a>}
+            </div>
+          )}
+        </div>
+        {p.mockup === 'svenskacore' && <SvenskaPhone lang={lang} still />}
+      </div>
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+</Layout>
