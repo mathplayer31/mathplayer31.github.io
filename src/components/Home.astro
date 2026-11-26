@@ -13,7 +13,7 @@ const projets = (await getCollection('projets', (p) => p.id.startsWith(`${lang}/
 const slug = (id: string) => id.split('/')[1];
 const featured = projets.find((p) => p.data.featured);
 const others = projets.filter((p) => p !== featured);
-const parcours = (await getCollection('parcours')).filter((p) => import.meta.env.DEV || !p.data.draft);
+const parcours = (await getCollection('parcours')).filter((p) => import.meta.env.DEV || !p.data.draft).sort((a, b) => a.data.order - b.data.order);
 ---
 <Layout lang={lang} alt={lang === 'fr' ? '/en/' : '/'}>
   <header class="hero">

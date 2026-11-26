@@ -21,10 +21,11 @@ const projets = defineCollection({
   }),
 });
 
-// Une ligne du parcours, dans les deux langues. draft: visible seulement en dev.
+// Une ligne du parcours, dans les deux langues, triée par order. draft: visible seulement en dev.
 const parcours = defineCollection({
   loader: file('src/content/parcours.json'),
   schema: z.object({
+    order: z.number(),
     period: z.string(),
     title: z.object({ fr: z.string(), en: z.string() }),
     text: z.object({ fr: z.string(), en: z.string() }),

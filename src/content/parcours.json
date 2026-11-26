@@ -1,32 +1,67 @@
 [
   {
+    "id": "celowen",
+    "order": 1,
+    "period": "Févr. à avr. 2026",
+    "title": {
+      "fr": "Stagiaire développeur back-end, Celowen",
+      "en": "Back-end developer intern, Celowen"
+    },
+    "text": {
+      "fr": "Back-end en Go (Gin) d'une plateforme de type ENT / Moodle pour établissements scolaires : base PostgreSQL, API REST, authentification, travail en équipe sous GitLab.",
+      "en": "Go (Gin) back end of an LMS platform (Moodle-like) for schools: PostgreSQL database, REST API, authentication, teamwork on GitLab."
+    }
+  },
+  {
     "id": "svenskacore",
+    "order": 2,
     "period": "2026",
-    "title": { "fr": "SvenskaCore et FranceCore", "en": "SvenskaCore and FranceCore" },
+    "title": {
+      "fr": "SvenskaCore et FranceCore, projet personnel",
+      "en": "SvenskaCore and FranceCore, personal project"
+    },
     "text": {
       "fr": "Conception et développement de deux applications d'apprentissage des langues, publiées sur le web et sur Android.",
       "en": "Designed and built two language-learning apps, released on the web and on Android."
     }
   },
   {
-    "id": "experience-1",
-    "draft": true,
-    "period": "20XX",
-    "title": { "fr": "Poste ou stage", "en": "Job or internship" },
-    "text": { "fr": "[à compléter : entreprise, missions, résultat]", "en": "[to fill in]" }
+    "id": "bachelor",
+    "order": 3,
+    "period": "Depuis oct. 2024",
+    "title": {
+      "fr": "Bachelor Concepteur Développeur d'Applications, IGENSIA Tech",
+      "en": "Bachelor in application design and development, IGENSIA Tech"
+    },
+    "text": {
+      "fr": "Titre RNCP niveau 6, à Blagnac. Conception d'applications (UML, architecture), web et mobile, bases de données SQL et NoSQL, gestion de projet Agile et DevOps, sécurité.",
+      "en": "Level 6 national certification (RNCP), in Blagnac. Application design (UML, architecture), web and mobile, SQL and NoSQL databases, Agile and DevOps project management, security."
+    }
   },
   {
-    "id": "experience-2",
-    "draft": true,
-    "period": "20XX",
-    "title": { "fr": "Poste ou stage", "en": "Job or internship" },
-    "text": { "fr": "[à compléter]", "en": "[to fill in]" }
+    "id": "mairie",
+    "order": 4,
+    "period": "Étés 2022 à 2026",
+    "title": {
+      "fr": "Agent technique, Mairie de Toulouse",
+      "en": "Seasonal technical staff, City of Toulouse"
+    },
+    "text": {
+      "fr": "Contrats d'été en centres de vacances : entretien des bâtiments et restauration des enfants, en équipe, sur un rythme soutenu.",
+      "en": "Summer contracts in holiday centres: building upkeep and children's catering, as a team, at a steady pace."
+    }
   },
   {
-    "id": "formation",
-    "draft": true,
-    "period": "20XX",
-    "title": { "fr": "Formation", "en": "Education" },
-    "text": { "fr": "[à compléter : diplôme, école]", "en": "[to fill in]" }
+    "id": "licence",
+    "order": 5,
+    "period": "2022 à 2024",
+    "title": {
+      "fr": "Licence informatique, Université Toulouse III",
+      "en": "Computer science degree course, Toulouse III University"
+    },
+    "text": {
+      "fr": "Université Toulouse III Paul Sabatier.",
+      "en": "Paul Sabatier University, Toulouse."
+    }
   }
 ]
