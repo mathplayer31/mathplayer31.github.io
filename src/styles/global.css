@@ -47,6 +47,8 @@ a{color:inherit;text-decoration:none}
 .btn-main{background:var(--ink);color:var(--bg)}
 .btn-ghost{border:1px solid var(--line)}
 .btn-ghost:hover{border-color:var(--muted)}
+.btn .dl{transition:transform .25s}
+.btn:hover .dl{transform:translateY(2px)}
 .btn .arr{transition:transform .25s}
 .btn:hover .arr{transform:translateX(3px)}
 
@@ -79,33 +81,12 @@ h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.035em;font-weight:500;line-
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
 .chips span{border:1px solid var(--line);border-radius:99px;padding:.25rem .7rem;font-size:12px;color:var(--muted);font-family:"Geist Mono",monospace}
 
-/* téléphone */
+/* téléphone : captures 390x844 */
 .phone-stage{display:flex;justify-content:center;perspective:1200px}
-.phone{width:300px;height:610px;border-radius:46px;background:#000;border:1px solid #2a2a2f;padding:12px;position:relative;transform:rotateX(calc(var(--r,0) * 1deg)) translateY(calc(var(--y,0) * 1px));box-shadow:0 40px 120px -30px rgba(62,224,166,.25)}
-.screen{position:absolute;inset:12px;border-radius:36px;overflow:hidden;background:#0f1412}
-.scr{position:absolute;inset:0;padding:48px 20px 20px;opacity:0;transform:scale(.97);transition:opacity .5s,transform .5s;display:flex;flex-direction:column;gap:12px;font-size:14px}
+.phone{width:300px;aspect-ratio:300/625;border-radius:46px;background:#000;border:1px solid #2a2a2f;padding:10px;position:relative;transform:rotateX(calc(var(--r,0) * 1deg)) translateY(calc(var(--y,0) * 1px));box-shadow:0 40px 120px -30px rgba(62,224,166,.25)}
+.screen{position:absolute;inset:10px;border-radius:37px;overflow:hidden;background:#0b1120}
+.scr{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:scale(.97);transition:opacity .5s,transform .5s}
 .scr.on{opacity:1;transform:none}
-.notch{position:absolute;top:10px;left:50%;translate:-50% 0;width:90px;height:24px;background:#000;border-radius:20px;z-index:2}
-.app-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
-.flash{flex:1;border-radius:22px;background:#16201c;border:1px solid #20302a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;text-align:center}
-.flash .sv{font-size:42px;font-weight:500;letter-spacing:-.03em}
-.flash .ipa{font-family:"Geist Mono",monospace;color:var(--muted);font-size:13px}
-.flash .fr{color:var(--accent);margin-top:.6rem}
-.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.grade span{background:#16201c;border-radius:10px;padding:.6rem 0;text-align:center;font-size:11px;color:var(--muted)}
-.grade span.g{background:var(--accent);color:#042c1e;font-weight:500}
-.deck{background:#16201c;border-radius:14px;padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center}
-.deck .mono{white-space:nowrap}
-.deck small{color:var(--muted);display:block;font-size:11px}
-.bar{height:4px;border-radius:4px;background:#22302b;margin-top:6px;width:110px;overflow:hidden}
-.bar b{display:block;height:100%;background:var(--accent)}
-.row{display:flex;align-items:center;gap:.7rem;background:#16201c;border-radius:14px;padding:.7rem .9rem}
-.row .n{font-family:"Geist Mono",monospace;color:var(--muted);width:18px}
-.row .av{width:28px;height:28px;border-radius:50%;background:#22302b}
-.row .xp{margin-left:auto;font-family:"Geist Mono",monospace;font-size:12px}
-.row.me{outline:1px solid var(--accent)}
-.streak{text-align:center;padding:1rem 0}
-.streak strong{font-size:56px;font-weight:500;letter-spacing:-.04em;color:var(--accent);line-height:1}
 
 /* autres projets */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
@@ -138,7 +119,8 @@ h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.035em;font-weight:500;line-
 /* contact */
 .contact{min-height:90svh;display:flex;align-items:center}
 .contact h2{font-size:clamp(3rem,10vw,9rem);letter-spacing:-.055em;line-height:.95}
-.mail{display:inline-block;font-size:clamp(1.2rem,2.6vw,2rem);margin-top:2.5rem;position:relative;padding-bottom:.3rem}
+.reach{display:flex;flex-wrap:wrap;column-gap:2.5rem;row-gap:1rem;margin-top:2.5rem}
+.mail{display:inline-block;font-size:clamp(1.2rem,2.6vw,2rem);position:relative;padding-bottom:.3rem;overflow-wrap:anywhere}
 .mail::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(.25);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .mail:hover::after{transform:scaleX(1)}
 .socials{display:flex;gap:1.5rem;margin-top:2rem}
@@ -164,12 +146,8 @@ h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.035em;font-weight:500;line-
 @media (max-width:860px){
   .nav ul{display:none}
   .feature .grid,.project-head{grid-template-columns:1fr;gap:1.5rem}
-  .phone{width:190px;height:380px;border-radius:32px}
-  .screen{border-radius:24px}
-  .scr{padding:40px 12px 12px;font-size:12px;gap:8px}
-  .flash .sv{font-size:32px}
-  .bar{width:60px}
-  .deck{padding:.6rem .7rem}
+  .phone{width:180px;border-radius:30px;padding:7px}
+  .screen{inset:7px;border-radius:24px}
   .steps{min-height:210px}
   .step h3{font-size:1.6rem}
   .step p{font-size:15px}

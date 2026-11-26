@@ -1,20 +1,7 @@
 [
   {
-    "id": "celowen",
-    "order": 1,
-    "period": "Févr. à avr. 2026",
-    "title": {
-      "fr": "Stagiaire développeur back-end, Celowen",
-      "en": "Back-end developer intern, Celowen"
-    },
-    "text": {
-      "fr": "Back-end en Go (Gin) d'une plateforme de type ENT / Moodle pour établissements scolaires : base PostgreSQL, API REST, authentification, travail en équipe sous GitLab.",
-      "en": "Go (Gin) back end of an LMS platform (Moodle-like) for schools: PostgreSQL database, REST API, authentication, teamwork on GitLab."
-    }
-  },
-  {
     "id": "svenskacore",
-    "order": 2,
+    "order": 1,
     "period": "2026",
     "title": {
       "fr": "SvenskaCore et FranceCore, projet personnel",
@@ -23,6 +10,19 @@
     "text": {
       "fr": "Conception et développement de deux applications d'apprentissage des langues, publiées sur le web et sur Android.",
       "en": "Designed and built two language-learning apps, released on the web and on Android."
+    }
+  },
+  {
+    "id": "celowen",
+    "order": 2,
+    "period": "Févr. à avr. 2026",
+    "title": {
+      "fr": "Stagiaire développeur back-end, Celowen",
+      "en": "Back-end developer intern, Celowen"
+    },
+    "text": {
+      "fr": "Back-end en Go (Gin) d'une plateforme de type ENT / Moodle pour établissements scolaires : base PostgreSQL, API REST, authentification, travail en équipe sous GitLab.",
+      "en": "Go (Gin) back end of an LMS platform (Moodle-like) for schools: PostgreSQL database, REST API, authentication, teamwork on GitLab."
     }
   },
   {

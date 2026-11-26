@@ -28,6 +28,12 @@ const parcours = (await getCollection('parcours')).filter((p) => import.meta.env
       <div class="actions fade-up">
         <a class="btn btn-main" href="#projets">{s.ctaProjects} <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn btn-ghost" href="#contact">{s.ctaContact}</a>
+        {site.cv && (
+          <a class="btn btn-ghost btn-cv" href={site.cv} download aria-label={s.cv}>
+            <svg class="dl" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>
+            CV
+          </a>
+        )}
       </div>
     </div>
     <span class="scroll-hint" aria-hidden="true"></span>
@@ -124,8 +130,10 @@ const parcours = (await getCollection('parcours')).filter((p) => import.meta.env
     <div class="wrap">
       <p class="mono" style="margin-bottom:1.5rem">{s.contactLabel}</p>
       <h2 data-reveal>{s.contactTitle}<br /><span style="color:var(--muted)">{s.contactSub}</span></h2>
-      {site.email && <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>}
-      {site.phone && <a class="mail" href={`tel:+33${site.phone.replace(/\s/g, '').slice(1)}`} style={site.email ? 'margin-left:2.5rem' : undefined}>{site.phone}</a>}
+      <div class="reach">
+        {site.email && <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>}
+        {site.phone && <a class="mail" href={`tel:+33${site.phone.replace(/\s/g, '').slice(1)}`}>{site.phone}</a>}
+      </div>
       <div class="socials mono">
         {site.github && <a href={site.github} rel="me">GitHub ↗</a>}
         {site.linkedin && <a href={site.linkedin} rel="me">LinkedIn ↗</a>}

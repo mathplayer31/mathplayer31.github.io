@@ -14,7 +14,7 @@ export const t = {
     aboutLabel: '01 / À propos',
     about: "J'aime les produits *simples* en surface et *solides* en dessous. Je construis de bout en bout : l'API, la base de données, l'interface et l'application *mobile*.",
     facts: [
-      { value: 3023, label: 'mots dans SvenskaCore' },
+      { value: 'Bac+3', label: 'Bachelor CDA en cours, RNCP niveau 6' },
       { value: '6 à 8', label: 'jours de cours par mois en alternance' },
       { value: 'Go + PostgreSQL', label: 'stage back-end chez Celowen' },
     ],
@@ -46,7 +46,7 @@ export const t = {
     aboutLabel: '01 / About',
     about: 'I like products that are *simple* on the surface and *solid* underneath. I build end to end: the API, the database, the interface and the *mobile* app.',
     facts: [
-      { value: 3023, label: 'words in SvenskaCore' },
+      { value: 'Bac+3', label: 'application design degree, in progress' },
       { value: '6 to 8', label: 'school days a month while working' },
       { value: 'Go + PostgreSQL', label: 'back-end internship at Celowen' },
     ],
